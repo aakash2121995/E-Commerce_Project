@@ -1,0 +1,1 @@
+select Product.ProductName, product.unitprice, orderno,date_rdr , status from product,order2 where product.ID = order.produc_id && customer_usernamw = session[user]
