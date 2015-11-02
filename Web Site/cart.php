@@ -14,66 +14,78 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                    $query = "SELECT product.ID_PROD,product.Name_PROD,product.UnitPrice_PROD,product.STOCK_PROD,cart2.QTY_CART,cart2.TOTAL_PRICE FROM product,cart2 WHERE product.ID_PROD IN (SELECT cart2.PRODUCT_ID FROM cart2 WHERE cart2.CUSTOMER_USERNAME = '$_SESSION[user]' ) AND product.ID_PROD = cart2.PRODUCT_ID";
+                    $subject=mysql_query($query);
+                    while ($row=mysql_fetch_row($subject)) {
+                        # code...
+                        echo "
                     <tr>
-                        <td class="col-sm-8 col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                        <td class='col-xs-12 col-sm-8 col-md-6'>
+                        <div class='media'>
+                            <a class='thumbnail pull-left' href='#''> <img class='media-object' src='http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png' style='width: 72px; height: 72px;'> </a>
+                            <div class='media-body'>
+                                <h4 class='media-heading'><a href='#'>$row[1]</a></h4>";
+                                
+                                if($row[3]>20)
+                                    echo" <span>Status: </span><span class='text-success'><strong>In Stock</strong></span>";
+                                else if($row[3]>10)
+                                    echo"<span>Status: </span><span class='text-warning'><strong>Leaves warehouse in 2 - 3 weeks</strong></span>";
+                                else
+                                    echo" <span>Status: </span><span style='color:red'><strong>Only $row[3] left in stock</strong></span>";
+                            echo"
                             </div>
                         </div></td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="3">
+                        
+                        <td class='col-sm-1 col-md-1' style='text-align: center'>
+                        <input type='email' class='form-control' id='quanity$' value='$row[4]'>
                         </td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$4.87</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
-                        <td class="col-sm-1 col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
+                        <td class='col-sm-1 col-md-1 text-center'><strong>Rs $row[2]</strong></td>
+                        <td class='col-sm-1 col-md-1 text-center'><strong>Rs $row[5]</strong></td>
+                        <td class='col-sm-1 col-md-1'>
+                        <button type='button' class='btn btn-danger'>
+                            <span id='$row[0]' class='glyphicon glyphicon-remove'></span> Remove
                         </button></td>
                     </tr>
-                    <tr>
-                        <td class="col-md-6">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">Product name</a></h4>
-                                <h5 class="media-heading"> by <a href="#">Brand name</a></h5>
-                                <span>Status: </span><span class="text-warning"><strong>Leaves warehouse in 2 - 3 weeks</strong></span>
-                            </div>
-                        </div></td>
-                        <td class="col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="2">
-                        </td>
-                        <td class="col-md-1 text-center"><strong>$4.99</strong></td>
-                        <td class="col-md-1 text-center"><strong>$9.98</strong></td>
-                        <td class="col-md-1">
-                        <button type="button" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove"></span> Remove
-                        </button></td>
-                    </tr>
+                    ";
+                    }
+                    
+                    $query = "SELECT sum(TOTAL_PRICE) FROM cart2 WHERE cart2.CUSTOMER_USERNAME = '$_SESSION[user]' ";
+                    $subject=mysql_query($query);
+                    $row = mysql_fetch_row($subject);
+                    $_SESSION['total'] =$total =  $row[0];
+
+                    ?>
+                   
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$24.59</strong></h5></td>
+
+                        <?php
+                        echo"<td class='text-right'><h5><strong>$total</strong></h5></td>";
+                        ?>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Estimated shipping</h5></td>
-                        <td class="text-right"><h5><strong>$6.94</strong></h5></td>
+                        <?php
+                        $shipping = $total*0.25;
+                        echo"<td class='text-right'><h5><strong>$shipping</strong></h5></td>";
+                        ?>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>$31.53</strong></h3></td>
+                        <?php
+                        $_SESSION['grandTotal'] = $grandTotal = $shipping + $total;
+                        echo"<td class='text-right'><h3><strong>$grandTotal</strong></h3></td>";
+                        ?>
                     </tr>
                     <tr>
                         <td>   </td>

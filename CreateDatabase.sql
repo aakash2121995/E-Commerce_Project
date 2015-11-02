@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2015 at 11:32 AM
+-- Generation Time: Nov 02, 2015 at 03:45 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -81,10 +81,19 @@ CREATE TABLE IF NOT EXISTS `cart` (
 --
 
 CREATE TABLE IF NOT EXISTS `cart2` (
-  `QTY_CART` int(11) DEFAULT NULL,
+  `QTY_CART` int(11) NOT NULL DEFAULT '1',
   `PRODUCT_ID` int(11) DEFAULT NULL,
-  `CUSTOMER_USERNAME` varchar(50) DEFAULT NULL
+  `CUSTOMER_USERNAME` varchar(50) DEFAULT NULL,
+  `TOTAL_PRICE` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cart2`
+--
+
+INSERT INTO `cart2` (`QTY_CART`, `PRODUCT_ID`, `CUSTOMER_USERNAME`, `TOTAL_PRICE`) VALUES
+(1, 543, 'aakash2121995', 350),
+(1, 897, 'aakash2121995', 400);
 
 -- --------------------------------------------------------
 
@@ -233,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `UnitPrice_PROD` decimal(10,2) DEFAULT NULL,
   `Discount_PROD` decimal(5,3) DEFAULT NULL,
   `UnitMRP_PROD` decimal(10,2) DEFAULT NULL,
-  `Stock_PROD` int(11) DEFAULT NULL,
+  `STOCK_PROD` int(11) DEFAULT '50',
   `Sizes_PROD` varchar(100) DEFAULT NULL COMMENT 'available sizes has to be a list.\nConsider changing into an entity.',
   `Colours_PROD` varchar(100) DEFAULT NULL COMMENT 'Has to be a list.\nConsider changing into an entity.',
   `AvgRating_PROD` decimal(3,2) DEFAULT NULL,
@@ -245,12 +254,12 @@ CREATE TABLE IF NOT EXISTS `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`ID_PROD`, `Name_PROD`, `Description_PROD`, `Picture_PROD`, `UnitPrice_PROD`, `Discount_PROD`, `UnitMRP_PROD`, `Stock_PROD`, `Sizes_PROD`, `Colours_PROD`, `AvgRating_PROD`, `MANUFACTURER_ID_MANU`, `CATEGORY_ID_CATE`) VALUES
-(101, 'Black Jeans', NULL, NULL, '400.00', NULL, NULL, NULL, NULL, NULL, NULL, 171, 782),
-(543, 'Green Black T-shirt', NULL, NULL, '300.00', NULL, NULL, NULL, NULL, NULL, NULL, 1010, 234),
-(742, 'XYZ Trouser', NULL, NULL, '500.00', NULL, NULL, NULL, NULL, NULL, NULL, 203, 121),
-(897, 'Superman Shirt', NULL, NULL, '670.00', NULL, NULL, NULL, NULL, NULL, NULL, 182, 456),
-(5634, 'Bat Suit', NULL, NULL, '100000.00', NULL, NULL, NULL, NULL, NULL, NULL, 233, 234);
+INSERT INTO `product` (`ID_PROD`, `Name_PROD`, `Description_PROD`, `Picture_PROD`, `UnitPrice_PROD`, `Discount_PROD`, `UnitMRP_PROD`, `STOCK_PROD`, `Sizes_PROD`, `Colours_PROD`, `AvgRating_PROD`, `MANUFACTURER_ID_MANU`, `CATEGORY_ID_CATE`) VALUES
+(101, 'Black Jeans', NULL, NULL, '400.00', NULL, NULL, 23, NULL, NULL, NULL, 171, 782),
+(543, 'Green Black T-shirt', NULL, NULL, '300.00', NULL, NULL, 3, NULL, NULL, NULL, 1010, 234),
+(742, 'XYZ Trouser', NULL, NULL, '500.00', NULL, NULL, 10, NULL, NULL, NULL, 203, 121),
+(897, 'Superman Shirt', NULL, NULL, '670.00', NULL, NULL, 50, NULL, NULL, NULL, 182, 456),
+(5634, 'Bat Suit', NULL, NULL, '100000.00', NULL, NULL, 35, NULL, NULL, NULL, 233, 234);
 
 -- --------------------------------------------------------
 
@@ -295,7 +304,7 @@ ALTER TABLE `cart`
 -- Indexes for table `cart2`
 --
 ALTER TABLE `cart2`
-  ADD KEY `CUSTOMER_USERNAME` (`CUSTOMER_USERNAME`,`PRODUCT_ID`);
+  ADD KEY `PRODUCT_ID` (`PRODUCT_ID`,`CUSTOMER_USERNAME`);
 
 --
 -- Indexes for table `cart_item`

@@ -1,4 +1,4 @@
-<script src="Scripts/jquery-1.9.1.min.js"></script>
+
 <script src="Scripts/profile.js"></script>
 <?php
 require_once("header.php");
