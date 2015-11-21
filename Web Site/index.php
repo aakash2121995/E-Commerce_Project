@@ -1,73 +1,36 @@
         <script src="Scripts/jquery-1.9.1.min.js"></script>
         <?php
 
-        require_once "header.php" ?>
+        require_once "header.php";
+        require_once "functions.php"; ?>
         <!-- Navigation Bar Ender -->
         <div class="row">
             <div class="col-sm-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Shop By Cateogry</div>
-                    <div class="panel-body">
-                        <div class="panel-group" id="collapse">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#collapse" href="#collapse-one">
-                                            <span class="glyphicon glyphicon-triangle-bottom"> Men </span>
-                                        </a>
+                <!-- <div class="container-fluid"> -->
+        <div id="wrapper">
 
-                                    </h4>
-                                </div>
-                                <div id="collapse-one" class="panel-collapse collapse in ">
-                                    <div class="panel-body ">
-                                        <a class="panel-collapse " href="#">T-Shirts</a><br />
-                                        <a class="panel-collapse" href="#">Jeans</a><br />
-                                        <a class="panel-collapse" href="#">FootWear</a><br />
-                                        <a class="panel-collapse" href="#">Braclettes</a><br />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#collapse" href="#collapse-two">
-                                            <span class="glyphicon glyphicon-triangle-bottom"> Women </span>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapse-two" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <a class="panel-collapse " href="#">T-Shirts</a><br />
-                                        <a class="panel-collapse" href="#">Jeans</a><br />
-                                        <a class="panel-collapse" href="#">FootWear</a><br />
-                                        <a class="panel-collapse" href="#">Braclettes</a><br />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#collapse" href="#collapse-three">
-                                            <span class="glyphicon glyphicon-triangle-bottom"> Kids </span>
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="collapse-three" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <a class="panel-collapse " href="#">T-Shirts</a><br />
-                                        <a class="panel-collapse" href="#">Jeans</a><br />
-                                        <a class="panel-collapse" href="#">FootWear</a><br />
-                                        <a class="panel-collapse" href="#">Braclettes</a><br />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a href="#">
+                            Shop By Category
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">CATEGORIES</a>
+                        <ul id="cats">
+                            <!--  -->
+                            <?php getCats();?>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
             </div>
 
-            <div class="col-lg-9 col-md-9 col-sm-9">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <div id="my-carousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#my-carousel" data-slide-to="0" class="active"></li>

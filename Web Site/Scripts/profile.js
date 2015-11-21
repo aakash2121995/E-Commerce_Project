@@ -150,7 +150,7 @@ $(function(){
         newPass = $('input[name="NewPassword"]')
         conPass = $('input[name="ConfirmPassword"]')
 
-        if(conPass.val()!=newPass.val())
+        if(conPass.val()!=newPass.val()||conPass.val()==""||newPass.val()=="")
 
       {
         conPass.next().removeClass('glyphicon-ok')

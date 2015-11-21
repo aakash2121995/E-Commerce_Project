@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2015 at 03:45 PM
+-- Generation Time: Nov 21, 2015 at 05:53 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -87,14 +87,6 @@ CREATE TABLE IF NOT EXISTS `cart2` (
   `TOTAL_PRICE` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `cart2`
---
-
-INSERT INTO `cart2` (`QTY_CART`, `PRODUCT_ID`, `CUSTOMER_USERNAME`, `TOTAL_PRICE`) VALUES
-(1, 543, 'aakash2121995', 350),
-(1, 897, 'aakash2121995', 400);
-
 -- --------------------------------------------------------
 
 --
@@ -116,17 +108,16 @@ CREATE TABLE IF NOT EXISTS `category` (
   `ID_CATE` int(11) NOT NULL,
   `Name_CATE` varchar(50) NOT NULL,
   `Description_CATE` longtext
-) ENGINE=InnoDB AUTO_INCREMENT=783 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=457 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `category`
 --
 
 INSERT INTO `category` (`ID_CATE`, `Name_CATE`, `Description_CATE`) VALUES
-(121, 'Trousers', NULL),
-(234, 'Tshirts', NULL),
-(456, 'Shirts', NULL),
-(782, 'Jeans', NULL);
+(121, 'MEN', NULL),
+(234, 'WOMEN', NULL),
+(456, 'KIDS', NULL);
 
 -- --------------------------------------------------------
 
@@ -247,19 +238,19 @@ CREATE TABLE IF NOT EXISTS `product` (
   `Colours_PROD` varchar(100) DEFAULT NULL COMMENT 'Has to be a list.\nConsider changing into an entity.',
   `AvgRating_PROD` decimal(3,2) DEFAULT NULL,
   `MANUFACTURER_ID_MANU` int(11) NOT NULL,
-  `CATEGORY_ID_CATE` int(11) NOT NULL
+  `CATEGORY_ID_CATE` int(11) NOT NULL,
+  `PROD_KEYWORDS` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5635 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`ID_PROD`, `Name_PROD`, `Description_PROD`, `Picture_PROD`, `UnitPrice_PROD`, `Discount_PROD`, `UnitMRP_PROD`, `STOCK_PROD`, `Sizes_PROD`, `Colours_PROD`, `AvgRating_PROD`, `MANUFACTURER_ID_MANU`, `CATEGORY_ID_CATE`) VALUES
-(101, 'Black Jeans', NULL, NULL, '400.00', NULL, NULL, 23, NULL, NULL, NULL, 171, 782),
-(543, 'Green Black T-shirt', NULL, NULL, '300.00', NULL, NULL, 3, NULL, NULL, NULL, 1010, 234),
-(742, 'XYZ Trouser', NULL, NULL, '500.00', NULL, NULL, 10, NULL, NULL, NULL, 203, 121),
-(897, 'Superman Shirt', NULL, NULL, '670.00', NULL, NULL, 50, NULL, NULL, NULL, 182, 456),
-(5634, 'Bat Suit', NULL, NULL, '100000.00', NULL, NULL, 35, NULL, NULL, NULL, 233, 234);
+INSERT INTO `product` (`ID_PROD`, `Name_PROD`, `Description_PROD`, `Picture_PROD`, `UnitPrice_PROD`, `Discount_PROD`, `UnitMRP_PROD`, `STOCK_PROD`, `Sizes_PROD`, `Colours_PROD`, `AvgRating_PROD`, `MANUFACTURER_ID_MANU`, `CATEGORY_ID_CATE`, `PROD_KEYWORDS`) VALUES
+(543, 'Green Black T-shirt', NULL, NULL, '300.00', NULL, NULL, 3, NULL, NULL, NULL, 1010, 234, 'black,t-shirt,green'),
+(742, 'XYZ Trouser', NULL, NULL, '500.00', NULL, NULL, 10, NULL, NULL, NULL, 203, 121, 'trouser,xyz'),
+(897, 'Superman Shirt', NULL, NULL, '670.00', NULL, NULL, 50, NULL, NULL, NULL, 182, 456, 'superman'),
+(5634, 'Bat Suit', NULL, NULL, '100000.00', NULL, NULL, 35, NULL, NULL, NULL, 233, 234, 'bat,batsuit,batman');
 
 -- --------------------------------------------------------
 
@@ -377,7 +368,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `ID_CATE` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=783;
+  MODIFY `ID_CATE` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=457;
 --
 -- AUTO_INCREMENT for table `manufacturer`
 --

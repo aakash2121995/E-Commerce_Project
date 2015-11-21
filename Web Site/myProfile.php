@@ -1,8 +1,8 @@
-
-<script src="Scripts/profile.js"></script>
 <?php
 require_once("header.php");
 ?>
+<script src="Scripts/profile.js"></script>
+
 <div class="container">
     <div class="row">
     	<div class="col-md-12">

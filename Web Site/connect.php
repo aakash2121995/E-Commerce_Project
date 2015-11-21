@@ -1,6 +1,7 @@
 <?php
 
 error_reporting(0);
+if(!$_SESSION['loggedin'])
 $_SESSION['loggedin'] = 0;
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'jmicart');

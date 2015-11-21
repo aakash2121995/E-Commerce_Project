@@ -28,10 +28,13 @@ function doSomething() {
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/carousel.css" rel="stylesheet" />
     <link href="Content/login.css" rel="stylesheet" />
+    <link href="Content/simple-sidebar.css" rel="stylesheet" />
+    <!-- <link href="Content/bootstrap.min sidebar.css" rel="stylesheet" /> -->
 </head>
 <body>
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/jquery.jrumble.1.3.min.js"></script>
     <script src="Scripts/carousel.js"></script>
     <script src="Scripts/login.js"></script>
     <div class=" row col-lg-push-2 col-lg-8 col-md-10 col-md-push-1 col-sm-12">
@@ -54,9 +57,9 @@ function doSomething() {
                         <li class="active"><a href="#">Help</a></li>
                         <li><a href="#">Contact Us</a></li>
                         <li>
-                            <form class="navbar-form navbar-left input-group-lg" role="search">
+                            <form  class="navbar-form navbar-left input-group-lg" role="search" method="GET" action = "products.php">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-group-lg" placeholder="Search">
+                                    <input name = "user_query" type="text" class="form-control form-group-lg" placeholder="Search">
                                 </div>
                                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                             </form>
